@@ -158,14 +158,13 @@ User downloads subtitle
 
 ---
 
-## 🧪 Testing
+## 🧪 Demo
 
-### Upload a Test Video
+![Demo](demovid.mp4)
 
-1. Navigate to upload page
-2. Drag and drop an MP4 file (max 500MB)
-3. Wait for processing (2-5 minutes)
-4. Download generated SRT subtitle
+
+
+
 
 ### Supported Formats
 
