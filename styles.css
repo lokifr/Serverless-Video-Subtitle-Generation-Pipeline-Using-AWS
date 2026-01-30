@@ -1,0 +1,127 @@
+/* Tailwind Configuration */
+/* This needs to be loaded before the styles */
+
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #020408;
+    color: white;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020408; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b; 
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* Animations */
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.animate-shimmer {
+    background: linear-gradient(90deg, #0f6df0 25%, #60a5fa 50%, #0f6df0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite linear;
+}
+
+/* Custom Components */
+.glass-panel {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.neon-text-shadow {
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Accessibility improvements */
+.focus-visible:focus {
+    outline: 2px solid #0ea5e9;
+    outline-offset: 2px;
+}
+
+/* Loading state for buttons */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Tailwind Custom Theme Extensions */
+/* These are applied via the Tailwind CDN config in script.js */
+.bg-hero-glow {
+    background-image: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.bg-card-gradient {
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+}
+
+.shadow-neon-blue {
+    box-shadow: 0 0 20px -5px rgba(14, 165, 233, 0.5);
+}
+
+.shadow-neon-purple {
+    box-shadow: 0 0 20px -5px rgba(139, 92, 246, 0.5);
+}
+
+.shadow-neon-green {
+    box-shadow: 0 0 20px -5px rgba(34, 197, 94, 0.5);
+}
+
+.shadow-glass {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Custom Color Classes (for Tailwind) */
+.bg-deep-navy {
+    background-color: #050A14;
+}
+
+.bg-surface-dark {
+    background-color: #0F1116;
+}
+
+.bg-surface-glass {
+    background-color: rgba(15, 23, 42, 0.6);
+}
+
+.text-primary {
+    color: #0f6df0;
+}
+
+.bg-primary {
+    background-color: #0f6df0;
+}
+
+.text-electric-blue {
+    color: #00f2ff;
+}
+
+.bg-electric-blue {
+    background-color: #00f2ff;
+}

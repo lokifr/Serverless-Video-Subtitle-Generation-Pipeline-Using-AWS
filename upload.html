@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="AutoSub - Upload your video and get automated English subtitles" />
+    <title>Upload Video - AutoSub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="upload-styles.css" />
+</head>
+
+<body
+    class="bg-gradient-to-b from-deep-navy via-[#020408] to-black min-h-screen text-white overflow-x-hidden antialiased selection:bg-cyan-500/30 selection:text-white">
+    <!-- Background Gradient -->
+    <div class="fixed top-0 left-0 w-full h-[600px] bg-hero-glow pointer-events-none z-0"></div>
+
+    <!-- Header -->
+    <header class="relative z-10 pt-8 pb-4 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div
+                    class="text-cyan-400 flex items-center justify-center bg-cyan-500/10 rounded-lg p-2 border border-cyan-500/20 shadow-[0_0_15px_-3px_rgba(6,182,212,0.3)]">
+                    <span class="material-symbols-outlined text-[24px]">closed_caption</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl tracking-tight text-white">AutoSub</h1>
+                    <p class="text-xs text-slate-500">Automated English Subtitle Generator</p>
+                </div>
+            </div>
+            <a href="index.html"
+                class="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+
+        <!-- Upload Card -->
+        <div id="uploadCard" class="glass-panel rounded-3xl p-8 md:p-12 mb-8 transition-all duration-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold mb-2 text-white">Upload Your Video</h2>
+                <p class="text-slate-400 text-sm">Drop your MP4 file and let AI generate perfect subtitles</p>
+            </div>
+
+            <!-- Drag & Drop Area -->
+            <div id="dropZone"
+                class="relative border-2 border-dashed border-white/10 rounded-2xl p-12 text-center transition-all duration-300 hover:border-cyan-500/30 hover:bg-white/[0.02] cursor-pointer group">
+                <input type="file" id="fileInput" accept=".mp4,video/mp4" class="hidden" />
+
+                <div id="dropZoneContent" class="flex flex-col items-center gap-4">
+                    <div
+                        class="w-20 h-20 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-cyan-400 text-5xl">cloud_upload</span>
+                    </div>
+                    <div>
+                        <p class="text-lg font-semibold text-white mb-1">Drag & drop your video here</p>
+                        <p class="text-sm text-slate-500">or click to browse</p>
+                    </div>
+                    <button type="button" id="browseBtn"
+                        class="mt-2 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-slate-300 hover:bg-white/10 hover:text-white transition-all">
+                        Browse Files
+                    </button>
+                    <p class="text-xs text-slate-600 mt-2">
+                        <span class="inline-flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">info</span>
+                            MP4 files only • Max 500MB
+                        </span>
+                    </p>
+                </div>
+
+                <!-- File Selected State -->
+                <div id="fileSelectedContent" class="hidden flex-col items-center gap-4">
+                    <div
+                        class="w-20 h-20 rounded-2xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                        <span class="material-symbols-outlined text-emerald-400 text-5xl">check_circle</span>
+                    </div>
+                    <div>
+                        <p class="text-lg font-semibold text-white mb-1" id="fileName">video.mp4</p>
+                        <p class="text-sm text-slate-500" id="fileSize">25.4 MB</p>
+                    </div>
+                    <button type="button" id="changeFileBtn"
+                        class="mt-2 px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-slate-300 hover:bg-white/10 hover:text-white transition-all">
+                        Change File
+                    </button>
+                </div>
+            </div>
+
+            <!-- Upload Button -->
+            <div class="mt-8 flex justify-center">
+                <button id="uploadBtn" disabled
+                    class="upload-btn-disabled px-10 py-4 rounded-full font-bold text-white transition-all duration-300 flex items-center gap-3 text-sm uppercase tracking-wide shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span class="material-symbols-outlined">rocket_launch</span>
+                    Upload & Generate Subtitles
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Section -->
+        <div id="statusSection" class="hidden glass-panel rounded-3xl p-8 md:p-12 mb-8">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-6 text-white">Processing Your Video</h3>
+
+                <!-- Progress Steps -->
+                <div class="max-w-md mx-auto space-y-4">
+                    <!-- Step 1: Upload -->
+                    <div id="step1"
+                        class="status-step flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                        <div
+                            class="status-icon w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-cyan-400 text-xl">cloud_upload</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold text-white text-sm">Uploading video</p>
+                            <p class="text-xs text-slate-500 status-message">Preparing upload...</p>
+                        </div>
+                        <div class="status-spinner hidden">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="status-check hidden">
+                            <span class="material-symbols-outlined text-emerald-400">check_circle</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Processing -->
+                    <div id="step2"
+                        class="status-step flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5 opacity-40">
+                        <div
+                            class="status-icon w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-purple-400 text-xl">psychology</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold text-white text-sm">Processing audio</p>
+                            <p class="text-xs text-slate-500 status-message">Waiting...</p>
+                        </div>
+                        <div class="status-spinner hidden">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="status-check hidden">
+                            <span class="material-symbols-outlined text-emerald-400">check_circle</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Generating -->
+                    <div id="step3"
+                        class="status-step flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5 opacity-40">
+                        <div
+                            class="status-icon w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-blue-400 text-xl">subtitles</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold text-white text-sm">Generating subtitles</p>
+                            <p class="text-xs text-slate-500 status-message">Waiting...</p>
+                        </div>
+                        <div class="status-spinner hidden">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="status-check hidden">
+                            <span class="material-symbols-outlined text-emerald-400">check_circle</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Complete -->
+                    <div id="step4"
+                        class="status-step flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5 opacity-40">
+                        <div
+                            class="status-icon w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-emerald-400 text-xl">task_alt</span>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="font-semibold text-white text-sm">Subtitle ready!</p>
+                            <p class="text-xs text-slate-500 status-message">Waiting...</p>
+                        </div>
+                        <div class="status-spinner hidden">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="status-check hidden">
+                            <span class="material-symbols-outlined text-emerald-400">check_circle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div id="downloadSection" class="hidden glass-panel rounded-3xl p-8 md:p-12 text-center">
+            <div class="mb-6">
+                <div
+                    class="w-20 h-20 rounded-2xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 mx-auto mb-4 animate-bounce-slow">
+                    <span class="material-symbols-outlined text-emerald-400 text-5xl">download_done</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-white">Subtitles Generated Successfully!</h3>
+                <p class="text-slate-400 text-sm">Your SRT file is ready to download</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button id="downloadBtn"
+                    class="animate-shimmer px-8 py-4 rounded-full font-bold text-white transition-all hover:scale-105 shadow-[0_0_30px_-10px_rgba(34,197,94,0.6)] flex items-center gap-2 text-sm uppercase tracking-wide">
+                    <span class="material-symbols-outlined">download</span>
+                    Download Subtitle (.srt)
+                </button>
+                <button id="newUploadBtn"
+                    class="px-8 py-4 rounded-full font-semibold text-slate-300 ring-1 ring-white/10 hover:ring-white/30 hover:bg-white/[0.03] hover:text-white transition-all text-sm uppercase tracking-wide">
+                    Upload Another Video
+                </button>
+            </div>
+
+            <!-- File Info -->
+            <div class="mt-8 pt-6 border-t border-white/5">
+                <div class="flex items-center justify-center gap-6 text-xs text-slate-500">
+                    <span class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">videocam</span>
+                        <span id="processedFileName">video.mp4</span>
+                    </span>
+                    <span class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">schedule</span>
+                        <span id="processingTime">Processed in 3.2s</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div id="errorSection" class="hidden glass-panel rounded-3xl p-8 md:p-12 text-center border-red-500/20">
+            <div class="mb-6">
+                <div
+                    class="w-20 h-20 rounded-2xl bg-red-500/10 flex items-center justify-center border border-red-500/20 mx-auto mb-4">
+                    <span class="material-symbols-outlined text-red-400 text-5xl">error</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-white">Processing Failed</h3>
+                <p class="text-slate-400 text-sm" id="errorMessage">Something went wrong. Please try again.</p>
+            </div>
+
+            <button id="retryBtn"
+                class="px-8 py-4 rounded-full font-semibold text-white bg-red-500/20 border border-red-500/30 hover:bg-red-500/30 transition-all text-sm uppercase tracking-wide">
+                Try Again
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-8 text-center text-xs text-slate-600">
+        <p>Powered by AWS • Secure & Encrypted Processing</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="upload-script.js"></script>
+</body>
+
+</html>
