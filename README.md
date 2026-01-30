@@ -12,23 +12,23 @@
 ## 📸 Screenshots
 
 ### Landing Page
-![Landing Page](screenshots/landing-page.png)
+![Landing Page](landing-page.png)
 *Modern, responsive landing page with glassmorphism design*
 
 ### Upload Interface
-![Upload Interface](screenshots/upload-page.png)
+![Upload Interface](upload-page.png)
 *Drag-and-drop video upload with real-time progress tracking*
 
 ### Processing Status
-![Processing Status](screenshots/processing.png)
+![Processing Status](processing.png)
 *Live status updates during transcription*
 
 ### Download Subtitle
-![Download Subtitle](screenshots/download.png)
+![Download Subtitle](download.png)
 *Generated SRT subtitle ready for download*
 
 ### Architecture Diagram
-![Architecture](screenshots/architecture.png)
+![Architecture](architecture.png)
 *Complete AWS serverless architecture*
 
 ---
