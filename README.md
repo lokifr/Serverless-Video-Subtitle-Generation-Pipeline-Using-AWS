@@ -12,19 +12,19 @@
 ## 📸 Screenshots
 
 ### Landing Page
-![Landing Page](landing-page.png)
+![Landing Page](screenshots/landing-page.png)
 *Modern, responsive landing page with glassmorphism design*
 
 ### Upload Interface
-![Upload Interface](upload-page.png)
+![Upload Interface](screenshots/upload-page.png)
 *Drag-and-drop video upload with real-time progress tracking*
 
 ### Processing Status
-![Processing Status](processing.png)
+![Processing Status](screenshots/processing.png)
 *Live status updates during transcription*
 
 ### Download Subtitle
-![Download Subtitle](download.png)
+![Download Subtitle](screenshots/download.png)
 *Generated SRT subtitle ready for download*
 
 ### Architecture Diagram
