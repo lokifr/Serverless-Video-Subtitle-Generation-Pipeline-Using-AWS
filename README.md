@@ -160,11 +160,15 @@ User downloads subtitle
 
 ## 🧪 Demo
 
-![Demo](demovid.mp4)
+
+
+
+https://github.com/user-attachments/assets/4ccc4630-e090-4f24-8777-8cc0c4d6f8f8
 
 
 
 
+---
 
 ### Supported Formats
 
