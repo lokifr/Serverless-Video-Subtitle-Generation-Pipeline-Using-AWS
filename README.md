@@ -1,6 +1,6 @@
 # Serverless Video Subtitle Generation Pipeline Using AWS
 
-> An event-driven, AI-powered transcription system with multi-language support built on AWS serverless architecture.
+> An event-driven, AI-powered subtitle generation pipeline with multi-language support built on AWS serverless architecture.
 
 [![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazon-aws)](https://aws.amazon.com/)
 [![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)](https://www.python.org/)
